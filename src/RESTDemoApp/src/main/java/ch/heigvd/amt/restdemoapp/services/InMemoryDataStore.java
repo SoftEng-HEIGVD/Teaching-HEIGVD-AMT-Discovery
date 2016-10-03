@@ -29,7 +29,7 @@ public class InMemoryDataStore implements InMemoryDataStoreLocal {
   private final Map<Long, Contract> contracts = new HashMap<>();
 
   @Override
-  @Lock(LockType.WRITE)
+  @Lock(LockType.READ)
   public long saveCompany(Company company) {
     companyIdCounter++; // is this thread safe?
     try {
@@ -74,7 +74,15 @@ public class InMemoryDataStore implements InMemoryDataStoreLocal {
   public List<Contract> findAllContracts() {
     return new ArrayList(contracts.values());
   }
-  
-  
 
+  @Override
+  public List<Person> findAllPeople() {
+    return new ArrayList(people.values());
+  }
+
+  @Override
+  public List<Company> findAllCompanies() {
+    return new ArrayList(companies.values());
+  }
+  
 }

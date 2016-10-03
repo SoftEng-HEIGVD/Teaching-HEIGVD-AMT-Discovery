@@ -22,6 +22,8 @@ public interface InMemoryDataStoreLocal {
   public long saveContract(Contract contract);
   public Contract loadContract(long id);
 
-  List<Contract> findAllContracts();
+  public List<Contract> findAllContracts();
+  public List<Person> findAllPeople();
+  public List<Company> findAllCompanies();
   
 }
