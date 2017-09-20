@@ -2,6 +2,8 @@ version: '2'
 services:
   glassfish:
     build: ../images/glassfish
+    environment:
+     - ADMIN_PASSWORD=glassfish
     ports:
      - "8080:8080"
      - "4848:4848"
