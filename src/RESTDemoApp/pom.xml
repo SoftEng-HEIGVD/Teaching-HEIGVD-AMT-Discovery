@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>ch.heigvd.amt</groupId>
   <artifactId>RESTDemoApp</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
-
   <name>RESTDemoApp</name>
-
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-    
   <dependencies>
     <dependency>
       <groupId>javax</groupId>
@@ -39,11 +35,52 @@
       <version>2.8.3</version>
       <scope>provided</scope>
     </dependency>
-    
   </dependencies>
-
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven2-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <id>deploy-to-wildfly</id>
+            <configuration>
+              <container>
+                <containerId>wildfly10x</containerId>
+                <type>remote</type>
+              </container>
+              <configuration>
+                <type>runtime</type>
+                <properties>
+                  <cargo.hostname>192.168.99.100</cargo.hostname>
+                  <cargo.jboss.management-http.port>9990</cargo.jboss.management-http.port>
+                  <cargo.remote.username>admin</cargo.remote.username>
+                  <cargo.remote.password>admin</cargo.remote.password>
+                  <cargo.protocol>http</cargo.protocol>
+                </properties>
+              </configuration>
+              <deployables>
+                <deployable>
+                  <groupId>ch.heigvd.amt</groupId>
+                  <artifactId>RESTDemoApp</artifactId>
+                  <type>war</type>
+                  <properties>
+                    <context>rest</context>
+                  </properties>
+                </deployable>
+              </deployables>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-controller-client</artifactId>
+            <version>8.2.1.Final</version>
+          </dependency>                  
+        </dependencies>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -91,5 +128,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
