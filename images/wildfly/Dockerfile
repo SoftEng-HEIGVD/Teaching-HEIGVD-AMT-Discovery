@@ -1,4 +1,4 @@
-FROM jboss/wildfly:10.1.0.Final
+FROM jboss/wildfly:14.0.1.Final
 
 MAINTAINER Olivier Liechti <olivier.liechti@heig-vd.ch>
 

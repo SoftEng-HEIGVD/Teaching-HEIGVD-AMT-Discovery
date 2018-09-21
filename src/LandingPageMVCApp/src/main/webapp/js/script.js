@@ -18,6 +18,7 @@ $("#video-wrap").css({
     'height': vidHeight
 });
 
+
 $('#video').videoBG({
     mp4:'assets/bg.mp4',
     ogv:'assets/bg.ogv',
@@ -39,7 +40,7 @@ new WOW().init();
 
 
 // Count Down Timer
-var countDownEndDate = '13 February 2017';  // specify your count down timer here
+var countDownEndDate = '27 January 2019';  // specify your count down timer here
 $('.countdown').final_countdown({
     start : new Date().getTime() / 1000,
     end   : new Date(countDownEndDate).getTime() / 1000,
