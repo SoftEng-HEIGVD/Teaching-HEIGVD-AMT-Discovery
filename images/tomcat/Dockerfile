@@ -1,4 +1,4 @@
-FROM tomcat:8.5.20-jre8-alpine
+FROM tomcat:9.0.37-jdk11-adoptopenjdk-hotspot
 
 MAINTAINER Olivier Liechti <olivier.liechti@heig-vd.ch>
 
